@@ -53,28 +53,23 @@ def calcular_mediana(dados):
 ##  5. Inclua em seu programa uma rotina que verifique se existe uma (ou mais) moda(s) entre os 40 dados. Caso exista(m),
 ##  o programa deve apresentá-la(s). 
 def calcular_moda(dados):
-    moda = [-1]
+    ocorrencias = {}
+    moda = []
     quantidade_max = 0
-    numero_atual = 0
-    quantidade_aux = 0
-    
-    # Ordena os Dados
-    dados = ordenar_dados(dados)
 
     for dado in dados:
-        if dado == numero_atual:
-            quantidade_aux = quantidade_aux + 1
+        if dado in ocorrencias:
+            ocorrencias[dado] = ocorrencias[dado] + 1
         else:
-            quantidade_aux = 1
-            numero_atual = dado
-        
-        if quantidade_aux == quantidade_max:
+            ocorrencias[dado] = 1
+    
+        if ocorrencias[dado] == quantidade_max:
             moda.append(dado)
-        elif quantidade_aux > quantidade_max:
+        elif ocorrencias[dado] > quantidade_max:
             moda = []
             moda.append(dado)
-            quantidade_max = quantidade_aux
-
+            quantidade_max = ocorrencias[dado]
+    
     return moda
 
 ## 6. Inclua em seu programa uma rotina que calcule e apresente o desvio absoluto médio dos 40 dados.
